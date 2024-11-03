@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const User = require("./models/user");
 const crypto = require("crypto");
@@ -12,12 +11,12 @@ const chatRoutes = require("./routes/chat");
 const Chat = require("./models/chat");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
 const multer = require("multer");
 const path = require("path");
 const { log } = require("console");
 const audioSignal = require("./services/audioSignal");
 const videoSignal = require("./services/videoSIgnal");
+const connectDB = require("./db.js");
 // const callRoutes = require("./routes/call");
 
 const app = express();
@@ -68,20 +67,9 @@ const upload = multer({ storage });
 
 const profileUpload = multer({ storage, fileFilter });
 
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB Connection Successful");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-
 audioSignal(io, userSocketMap);
 videoSignal(io, userSocketMap);
+connectDB();
 
 const generateResetToken = () => {
   const chars =

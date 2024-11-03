@@ -101,14 +101,18 @@ const Header = ({
 
         {/* Right Section - Notifications and Profile */}
         <div className="flex items-center space-x-2 md:space-x-4">
+          <p className="text-black text-1xl font-extrabold text-center">
+            {userData.firstName || "User Name"}
+          </p>
           {/* <IconButton className={iconButtonClass}>
             <NotificationIcon />
           </IconButton> */}
+
           <IconButton onClick={handleProfileClick}>
             <Avatar
               src={`http://localhost:5000/${userData.avatar}`}
               alt="Profile"
-              style={{ height: "55px", width: "100%" }}
+              //style={{ height: "55px", width: "100%" }}
             />
           </IconButton>
         </div>
@@ -125,6 +129,7 @@ const Header = ({
 };
 
 export default Header;
+
 // import React from "react";
 // import { Avatar, IconButton } from "@mui/material";
 // import {
