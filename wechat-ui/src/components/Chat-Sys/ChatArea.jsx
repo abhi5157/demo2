@@ -379,7 +379,7 @@ function ChatArea({ activeUser }) {
         className="flex-1 flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${chatbg})` }}
       >
-        <p className="text-[#26A69A] font-bold text-[40px]">
+        <p className="text-[#26A69A] font-bold text-[40px] text-center">
           Select a contact to start chatting
         </p>
       </div>

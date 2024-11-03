@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { host } from "../../../Utils/AllApi.js";
 
 import facebook from "../../../assets/facebook.png";
 import google from "../../../assets/google.png";
@@ -30,7 +31,8 @@ function SignupForm() {
         setError("Passwords do not match");
         return;
       }
-      const url = "http://localhost:5000/api/users";
+      // const url = "http://localhost:5000/api/users";
+      const url = "https://chat-app-demo-9e8a.onrender.com/api/users";
       const response = await axios.post(url, data);
       console.log(response.data);
       navigate("/login");
@@ -39,6 +41,7 @@ function SignupForm() {
         setError(error.response.data);
       } else {
         setError("An error occurred. Please try again.");
+        console.log(error);
       }
     }
   };
